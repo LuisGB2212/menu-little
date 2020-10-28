@@ -17,32 +17,32 @@ class CategoryTypeSeeder extends Seeder
 			'type_id' => 1,
         ]);
         DB::table('category_types')->insert([
-			'category_id' => 1,
+			'category_id' => 2,
 			'type_id' => 1,
         ]);
         DB::table('category_types')->insert([
-			'category_id' => 1,
+			'category_id' => 3,
 			'type_id' => 1,
         ]);
         
         DB::table('category_types')->insert([
-			'category_id' => 2,
+			'category_id' => 4,
 			'type_id' => 2,
         ]);
         DB::table('category_types')->insert([
-			'category_id' => 2,
+			'category_id' => 5,
 			'type_id' => 2,
         ]);
         DB::table('category_types')->insert([
-			'category_id' => 2,
+			'category_id' => 6,
 			'type_id' => 2,
         ]);
         DB::table('category_types')->insert([
-			'category_id' => 2,
+			'category_id' => 7,
 			'type_id' => 2,
         ]);
         DB::table('category_types')->insert([
-			'category_id' => 2,
+			'category_id' => 8,
 			'type_id' => 2,
 		]);
     }

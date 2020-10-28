@@ -1,3 +1,27 @@
+En el mercado actual, al menos en la región, no existe una plataforma web en donde en donde el usuario final pueda elegir sus alimentos, solicitarlos al restaurant y pagarlos inmediatamente por medio de transferencias electrónicas. La plataforma web puede funcionar en el mismo restaurante escaneando un código QR dependiendo la mesa donde se encuentre o fuera del mismo solicitando un envió a domicilio y permitiendo pagar al momento de realizar el pedido por medio de transferencia electrónica.
+
+Pasos para clonar repositorio:
+
+Dentro del directorio wampserver / xampp
+
+git clone https://github.com/LuisGB2212/menu-little
+ingresar a la carpeta creada: cd menu-little
+descargar los complementos y plugins necesarios composer install
+realizar copia del archivo para configuración del sistema: cp .env.example .env
+Crear base de datos "menu_little" en el localhost/phpmyadmin
+en el archivo .env del proyecto colocar el nombre de la base de datos, usuario y contraseña 
+crear el key para la aplicaión laravel: php artisan key:generate
+realializar la migración de la base de datos y datos iniciales para el funcionamiento de la página: php artisan migrate:fresh --seed
+por ultimo levantar el servidor con: php artisan serve
+Para el uso del sistema se ingresa directo al menu.
+
+
+<p align="center">Qr para mesa 1 <img src="https://netsolutionweb.tech/images/qrtable1.PNG" width="400"></p>
+<p align="center">Qr para mesa 2 <img src="https://netsolutionweb.tech/images/qrtable2.PNG" width="400"></p>
+<p align="center">Qr para mesa 3 <img src="https://netsolutionweb.tech/images/qrtable3.PNG" width="400"></p>
+
+
+
 <p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
 
 <p align="center">

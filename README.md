@@ -29,6 +29,7 @@ por ultimo levantar el servidor con:<strong> php artisan serve</strong>
 <br>
 Para el uso del sistema se ingresa directo al menu.
 
+<strong>Usuario de admin: admin@admin.com <br> Pass: 123456789</strong>
 
 <p align="center">Qr para mesa 1 <img width="250px" src="https://netsolutionweb.tech/images/qrtable1.PNG"></p>
 <p align="center">Qr para mesa 2 <img width="250px" src="https://netsolutionweb.tech/images/qrtable2.PNG"></p>

@@ -12,11 +12,11 @@ class TypeOrderSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('tables')->insert([
+        DB::table('type_orders')->insert([
 			'name' => 'ENVIO A DOMICILIO',
         ]);
 
-        DB::table('tables')->insert([
+        DB::table('type_orders')->insert([
 			'name' => 'RECOLECCIÓN EN SUCURSAL',
         ]);
     }

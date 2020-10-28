@@ -1,29 +1,4 @@
 <div class="row justify-content-center">
-    {{-- @foreach ($type->categoryTypes as $index => $category)
-        @php
-            $par = $index%2;
-        @endphp
-        <div class="col-lg-5 {{ $par != 0 ? 'offset-1' : ''}}">
-            <div class="menu_list">
-                <h1>{{$category->category->category_name}}</h1>
-                <ul class="list">
-                    @foreach ($category->category->drinkFoods as $drinkFood)
-                        <li>
-                            <h4>{{$drinkFood->name}}
-                                <span>${{number_format($drinkFood->price,2,'.',',')}} <br>
-                                <button class="btn btn-danger btn-sm addProductCar" idProduct="{{$drinkFood->id}}">
-                                    <span class="text-custom">Agregar <i class="fa fa-plus"></i></span>
-                                </button>
-                                </span>
-                            </h4>
-                            <p>({{$drinkFood->description}})</p>
-                        </li>
-                    @endforeach
-                    
-                </ul>
-            </div>
-        </div>
-    @endforeach --}}
     <table class="table table-responsive-lg table-hover table-striped">
         <thead>
             <tr>
@@ -69,8 +44,9 @@
                         @if ($order->status != 'cerrado')
                             <button type="button" idOrderUp="{{$order->id}}" class="orderUpdate btn btn-danger">
                                 Cerrar Orden
-                            </button
+                            </button>
                         @endif
+                        
                         @if ($order->checkOrders->count() < 1)
                             <button type="button" totalToPay="{{$order->total()}}" idOrderToPay="{{$order->id}}" class="orderToAddPay btn btn-danger">
                                 Cobrar

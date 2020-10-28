@@ -4,6 +4,7 @@ namespace App\Http\Controllers\frontend;
 
 use App\Http\Controllers\Controller;
 use App\Order;
+use App\CheckOrder;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Request as RequestGuz;
@@ -128,8 +129,8 @@ class CheckOutController extends Controller
 
             try {
                 //SEND REQUEST
-                $request = new RequestGuz('POST', 'payments', $headers, $data_string);
-                $response = $client->send($request);
+                $requestResult = new RequestGuz('POST', 'payments', $headers, $data_string);
+                $response = $client->send($requestResult);
                 http_response_code($response->getStatusCode());
                 $result = json_decode($response->getBody()->getContents());
                 
@@ -140,7 +141,8 @@ class CheckOutController extends Controller
                         'payment_id' => $result->ipgTransactionId,
                         'order_id' => $order->id
                     ]);
-
+                    $order->diner_id = $request->session()->get('client')['id'];
+                    $order->save();
                     $request->session()->pull('client');
                     $request->session()->pull('order');
                     $request->session()->pull('table');
@@ -153,7 +155,7 @@ class CheckOutController extends Controller
             }
         }
 
-        return $result;
+        return response()->json($result);
     }
 
     /**

@@ -53,38 +53,6 @@
                             </tfoot>
                         </table>
                         <div id="tableFooterOrder" class="justify-content-center row">
-                            {{-- @if (!Request()->session()->has('table') && Cart::count() > 0)
-                                @php
-                                    $typeOrders = \App\TypeOrder::all();
-                                @endphp
-                                <div class="col-lg-12 row form-group" align="center">
-                                    <div class="col-lg-12">
-                                        <h4>No se encuentra en el local, para su pedido sera?</h4>
-                                    </div>
-                                    @php
-                                        $idType = 0;
-                                        $checkTypeOrder = null;
-                                        if(Request()->session()->has('order')){
-                                            $idType = Request()->session()->get('order')['type_order_id'];
-                                            $checkTypeOrder = $typeOrders->where('id',$idType);
-                                        }
-                                    @endphp
-                                    
-                                    @if ($checkTypeOrder != null)
-                                        <div class="col-lg-12">
-                                            <strong>Su orden se agregara al anterior, ya que no ha realizado el pagado</strong>
-                                            <br>Modalidad: {{$checkTypeOrder[0]->name}}
-                                        </div>
-                                    @else
-                                        @foreach ($typeOrders as $typeOrder)
-                                            <div class="col-lg-4">
-                                                <input type="radio" required class="" name="typeOrderId" value="{{$typeOrder->id}}">{{$typeOrder->name}}
-                                            </div>
-                                        @endforeach
-                                    @endif
-                                    @include('frontend.informationUser')
-                                </div>
-                            @endif --}}
                             <div class="col-lg-4 card">
                                 <div class="card-header">
                                     <h4>Datos del cliente</h4>
@@ -132,7 +100,7 @@
                                     </div>
                                     <div class="col-lg-4">
                                         <label for=""> Clave CVV</label>
-                                        <input type="text" name="card_cvv" required class="form-control" placeholder="Número de tarjeta">
+                                        <input type="text" name="card_cvv" required class="form-control" placeholder="Número de seguridad">
                                         
                                     </div>
                                 </div>

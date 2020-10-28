@@ -66,6 +66,10 @@ $(document).on('click','.deleteItem', function(){
     });
 })
 
+function reloadPayTo(){
+    location.href = '/';
+}
+
 $('#orderProducts').on('submit', function(e){
     e.preventDefault();
     $.ajax({
@@ -103,7 +107,7 @@ $('#orderPayProducts').on('submit', function(e){
                 return;
             }
 
-            swal.fire("Pago aprobado!",'So orden esta en proceso, gracias por su preferencia', "error");
+            swal.fire("Pago aprobado!",'So orden esta en proceso, gracias por su preferencia', "success");
             // if(response.message == 'error'){
             //     location.href = '/register';
             //     return;
@@ -114,7 +118,7 @@ $('#orderPayProducts').on('submit', function(e){
             // $('.totalProduct').html(response.totalProduct);
             // $('#tableOrder').html('');
             // $('#tableFooterOrder').html('');
-            location.href = '/';
+            setTimeout('reloadPayTo()',5000);
         },
         error: (errors) => {
             swal.fire("Pago no aprobado!",'Intenta de nuevo o utiliza otra tarjeta', "error");

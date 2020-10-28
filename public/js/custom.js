@@ -103,7 +103,7 @@ $('#orderPayProducts').on('submit', function(e){
                 return;
             }
 
-            swal.fire("Pago aprobado!",'Intenta de nuevo o utiliza otra tarjeta', "error");
+            swal.fire("Pago aprobado!",'So orden esta en proceso, gracias por su preferencia', "error");
             // if(response.message == 'error'){
             //     location.href = '/register';
             //     return;

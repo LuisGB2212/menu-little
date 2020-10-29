@@ -52,12 +52,13 @@ class OrderController extends Controller
              
             $checkUser = User::where('email', $request->email)->first();
             if($checkUser === null){
-                $user = User::create([
+                $user = User::updateOrCreate([
+                    'email' => $request->email,
+                ],[
                     'name' => $request->name,
                     'phone' => $request->phone,
                     'address' => $request->address,
                     'references' => $request->references,
-                    'email' => $request->email,
                 ]);
             }else{
                 $user = $checkUser;

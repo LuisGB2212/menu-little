@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\frontend;
 
+use App\User;
 use App\Http\Controllers\Controller;
 use App\Order;
 use App\CheckOrder;
@@ -73,6 +74,8 @@ class CheckOutController extends Controller
      */
     public function store(Request $request)
     {
+        $result = '';
+        $order = '';
         if($request->session()->has('order')){
             $request->validate([
                 'card_number' => 'required',
@@ -83,7 +86,7 @@ class CheckOutController extends Controller
             ]);
             $orderSession = $request->session()->get('order');
             $order = Order::findOrFail($orderSession['id']);
-            $result = '';
+            
             if (!is_object($result))
                 $result = new \stdClass;
 
@@ -141,7 +144,26 @@ class CheckOutController extends Controller
                         'payment_id' => $result->ipgTransactionId,
                         'order_id' => $order->id
                     ]);
-                    $order->diner_id = $request->session()->get('client')['id'];
+                    if(isset($request->name) && !$request->session()->has('client')){
+                        $checkUser = User::where('email', $request->email)->first();
+                        if($checkUser === null){
+                            $user = User::updateOrCreate([
+                                'email' => $request->email,
+                            ],[
+                                'name' => $request->name,
+                                'phone' => $request->phone,
+                                'address' => $request->address,
+                                'references' => $request->references,
+                            ]);
+                        }else{
+                            $user = $checkUser;
+                        }
+                        
+                        $order->diner_id = $user->id;
+                    }else{
+                        $order->diner_id = $request->session()->get('client')['id'];
+                    }
+                    
                     $order->save();
                     $request->session()->pull('client');
                     $request->session()->pull('order');
@@ -155,7 +177,7 @@ class CheckOutController extends Controller
             }
         }
 
-        return response()->json($result);
+        return response()->json([$result,$order]);
     }
 
     /**
@@ -167,6 +189,7 @@ class CheckOutController extends Controller
     public function show($order)
     {
         $payOrder = Order::where('number_order',$order)->first();
+        
         return view('frontend.checkOut',compact('payOrder'));
         //return $payOrder->checkOrders;
     }

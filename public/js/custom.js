@@ -66,8 +66,8 @@ $(document).on('click','.deleteItem', function(){
     });
 })
 
-function reloadPayTo(){
-    location.href = '/';
+function reloadPayTo(idOrder){
+    location.href = '/check-out/'+idOrder;
 }
 
 $('#orderProducts').on('submit', function(e){
@@ -102,23 +102,15 @@ $('#orderPayProducts').on('submit', function(e){
         type:'POST',
         data:$(this).serialize(),
         success: (response) => {
-            if(response.transactionStatus != 'APPROVED'){
+            console.log(response);
+            if(response[0].transactionStatus != 'APPROVED'){
                 swal.fire("Pago no aprobado!",'Intenta de nuevo o utiliza otra tarjeta', "error");
                 return;
             }
 
             swal.fire("Pago aprobado!",'So orden esta en proceso, gracias por su preferencia', "success");
-            // if(response.message == 'error'){
-            //     location.href = '/register';
-            //     return;
-            // }
-
-            // swal.fire("Orden procesada!",'Puede realizar el pago de su orden', "success");
-
-            // $('.totalProduct').html(response.totalProduct);
-            // $('#tableOrder').html('');
-            // $('#tableFooterOrder').html('');
-            setTimeout('reloadPayTo()',5000);
+            
+            setTimeout("reloadPayTo('"+response[1].number_order+"')",3000);
         },
         error: (errors) => {
             swal.fire("Pago no aprobado!",'Intenta de nuevo o utiliza otra tarjeta', "error");

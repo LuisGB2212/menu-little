@@ -9,10 +9,10 @@
                     @include('frontend.table_order',['payOrder' => $payOrder])
                     @if ($payOrder->checkOrders->count() > 0)
                         <div class="col-lg-12" align="center">
-                            <h4>Orden aprobado</h4>
+                            <h1>Orden aprobado</h1>
                             <br>
-                            <strong><h5>Metodo de pago: {{$payOrder->checkOrders->last()->	payment_method}}</h5></strong>
-                            <strong><h5>Pago: {{$payOrder->checkOrders->last()->transaction_status}}</h5></strong>
+                            <strong><h3>Metodo de pago: {{$payOrder->checkOrders->last()->	payment_method}}</h3></strong>
+                            <strong><h3>Pago: {{$payOrder->checkOrders->last()->transaction_status}}</h3></strong>
                         </div>
                     @else
                         <form action="" id="orderPayProducts">
